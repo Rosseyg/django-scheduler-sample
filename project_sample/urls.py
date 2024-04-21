@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.conf.urls import include, url
-
+from django.urls import path
 from django.contrib import admin
 from django.conf import settings
 
@@ -12,6 +12,8 @@ urlpatterns = [
     url(r'^schedule/', include('schedule.urls')),
     url(r'^fullcalendar/', TemplateView.as_view(template_name="fullcalendar.html"), name='fullcalendar'),
     url(r'^admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path("", include("pages.urls")),
 ]
 
 if settings.DEBUG:

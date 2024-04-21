@@ -30,12 +30,12 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
-
+# django-allauth config
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -98,6 +98,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -115,15 +117,22 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    # Uncomment the next line to enable the admin:
+    # Third-party
+    'allauth',
+    'allauth.account',
+    
     'django.contrib.admin',
     'debug_toolbar',
     'djangobower',
     'schedule',
-    'project_sample'
+    'project_sample',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    # local apps
+    'pages',
 )
+LOGIN_REDIRECT_URL = "home"
+ACCOUNT_LOGOUT_REDIRECT = "home"
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
